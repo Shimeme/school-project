@@ -276,7 +276,7 @@ document.querySelector('.form').addEventListener('submit', function(e) {
   const validUser = users.find(user => user.username === username && user.password === password);
   
   if (validUser) {
-    // Перенаправляем на main.html
+    // Перенаправляем на home.html
     window.location.href = 'home.html';
   } else {
     alert('Invalid username or password');
