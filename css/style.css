@@ -1,10 +1,8 @@
 /* ==========================================================================
-   CYBERPUNK WEBSITE STYLES
-   Complete CSS framework for cyberpunk-themed websites
+	Style for website
    ========================================================================== */
 
 /* ==========================================================================
-   RESET & BASE STYLES
    ========================================================================== */
 
    *, ::after, ::before {
@@ -735,3 +733,128 @@
       display: none;
     }
   }
+  .section-hero h1 {
+    color: #ffffff !important; /* чисто белый цвет */
+    text-shadow:
+      0 0 5px rgba(0, 0, 0, 0.9),
+      0 0 10px rgba(0, 0, 0, 0.8),
+      0 0 20px rgba(0, 0, 0, 0.7);
+    background: none !important;
+    -webkit-background-clip: unset !important;
+    -webkit-text-fill-color: unset !important;
+    display: inline-block;
+  }
+
+  :root {
+    --primary-bg: #1f2937;          /* темно-синий графит */
+    --secondary-bg: #374151;        /* средний серо-синий */
+    --accent-bg: #4b5563;           /* серый */
+    --text-primary: #e5e7eb;        /* светло-серый */
+    --text-secondary: #9ca3af;      /* средний серый */
+    --text-muted: #6b7280;          /* темный серый */
+    --accent-blue: #2563eb;         /* корпоративный синий */
+    --gradient-primary: linear-gradient(90deg, #1e3a8a 0%, #2563eb 100%);
+  }
+  
+  /* Шрифты */
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 16px;
+    color: var(--text-primary);
+    background-color: var(--primary-bg);
+  }
+  
+  /* Заголовки — без uppercase, с нормальным регистром */
+  h1, h2, h3, h4, h5, h6 {
+    text-transform: none;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+  }
+  
+  /* Ссылки — спокойный синий, без glow */
+  a {
+    color: var(--accent-blue);
+    text-decoration: underline;
+    transition: color 0.3s ease;
+  }
+  
+  a:hover {
+    color: #1d4ed8; /* чуть темнее */
+    text-shadow: none;
+  }
+  
+  /* Кнопки — строгие синие */
+  .btn {
+    background-color: var(--accent-blue);
+    border: none;
+    color: var(--text-primary);
+    padding: 0.5rem 1.2rem;
+    border-radius: 0.25rem;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn:hover {
+    background-color: #1d4ed8;
+    box-shadow: none;
+    transform: none;
+  }
+  
+  /* Карточки — темный фон, без ярких эффектов */
+  .card {
+    background-color: var(--secondary-bg);
+    border: 1px solid var(--accent-bg);
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    color: var(--text-secondary);
+    box-shadow: none;
+    transition: box-shadow 0.3s ease;
+  }
+  
+  .card:hover {
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+    border-color: var(--accent-blue);
+    color: var(--text-primary);
+  }
+  
+  /* Навигация */
+  .navbar {
+    background-color: var(--primary-bg);
+    border-bottom: 1px solid var(--accent-bg);
+    color: var(--text-primary);
+  }
+  
+  .nav-link {
+    color: var(--text-secondary);
+    text-transform: none;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    transition: color 0.3s ease;
+  }
+  
+  .nav-link:hover,
+  .nav-link.active {
+    color: var(--accent-blue);
+    background-color: transparent;
+    box-shadow: none;
+  }
+  
+  /* Текст в секции Hero */
+  .section-hero h1 {
+    color: var(--text-primary);
+    text-shadow: none;
+    background: none;
+    font-weight: 700;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .section-hero p {
+    color: var(--text-secondary);
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    background: none;
+    padding: 0;
+  }
+  
