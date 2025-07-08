@@ -2,7 +2,7 @@
   {
     "id": "KITCHEN.MAIN",
     "status": "ONLINE",
-    "temp": -10,
+    "temp": null,
     "humidity": 65,
     "items": 45,
     "last_sync": "2 MIN AGO"
@@ -19,7 +19,7 @@
     "id": "OFFICE.MINI",
     "status": "OFFLINE",
     "temp": -138,
-    "humidity": 0,
+    "humidity": null,
     "items": 12,
     "last_sync": "2 HRS AGO"
   }
