@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>アナリティクス - FridgeFlow</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="force-dark">
+    <nav class="navbar">
+        <div class="container d-flex justify-content-between align-items-center">
+            <a href="home.html" class="navbar-brand">❄️ FridgeFlow</a>
+            <ul class="navbar-nav">
+                <li class="nav-item"><a href="dashboard.html" class="nav-link">ダッシュボード</a></li>
+                <li class="nav-item"><a href="analytics.html" class="nav-link active">アナリティクス</a></li>
+                <li class="nav-item"><a href="fridges.html" class="nav-link">マイ冷蔵庫</a></li>
+                <li class="nav-item"><a href="inventory.html" class="nav-link">在庫管理</a></li>
+                <li class="nav-item"><a href="alerts.html" class="nav-link">アラート</a></li>
+                <li class="nav-item"><a href="settings.html" class="nav-link">設定</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="section" style="padding-top: 120px;">
+        <div class="container-lg">
+            <h2 class="section-title">アナリティクスダッシュボード</h2>
+
+            <div class="grid grid-cols-2 gap-5">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title">食品ステータス分析</h5>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="foodStatusChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title">ユニット別在庫分布</h5>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="inventoryDistributionChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title">週間消費パターン</h5>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="consumptionPatternChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title">冷蔵庫システムステータス</h5>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="systemStatusChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Use CSS variables for chart colors to match the theme
+            const colors = {
+                blue: getComputedStyle(document.documentElement).getPropertyValue('--neon-blue').trim(),
+                cyan: getComputedStyle(document.documentElement).getPropertyValue('--neon-cyan').trim(),
+                purple: getComputedStyle(document.documentElement).getPropertyValue('--neon-purple').trim(),
+                green: getComputedStyle(document.documentElement).getPropertyValue('--neon-green').trim(),
+                orange: getComputedStyle(document.documentElement).getPropertyValue('--neon-orange').trim(),
+                yellow: getComputedStyle(document.documentElement).getPropertyValue('--neon-yellow').trim(),
+                text: getComputedStyle(document.documentElement).getPropertyValue('--text-secondary').trim(),
+                grid: 'rgba(255, 255, 255, 0.1)'
+            };
+
+            // Chart.js Global Config
+            Chart.defaults.color = colors.text;
+            Chart.defaults.font.family = 'Segoe UI, system-ui, sans-serif';
+            Chart.defaults.plugins.legend.position = 'bottom';
+
+            // 1. Food Status Chart (Pie)
+            const foodStatusCtx = document.getElementById('foodStatusChart').getContext('2d');
+            new Chart(foodStatusCtx, {
+                type: 'pie',
+                data: {
+                    labels: ['新鮮', '賞味期限間近', '賞味期限切れ'],
+                    datasets: [{
+                        label: 'Food Status',
+                        data: [3, 1, 2], // Data based on your inventory.html example
+                        backgroundColor: [colors.green, colors.yellow, colors.orange],
+                        borderColor: '#1a1d3a',
+                        borderWidth: 2,
+                        hoverOffset: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        title: { display: false }
+                    }
+                }
+            });
+
+            // 2. Inventory Distribution (Doughnut)
+            const inventoryDistCtx = document.getElementById('inventoryDistributionChart').getContext('2d');
+            new Chart(inventoryDistCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['KITCHEN.MAIN', 'GARAGE.UNIT', 'OFFICE.MINI'],
+                    datasets: [{
+                        label: 'Inventory Location',
+                        data: [3, 2, 1], // Data based on your inventory.html example
+                        backgroundColor: [colors.blue, colors.purple, colors.cyan],
+                        borderColor: '#1a1d3a',
+                        borderWidth: 2,
+                        hoverOffset: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        title: { display: false }
+                    }
+                }
+            });
+
+            // 3. Consumption Pattern (Line) - Simulated Data
+            const consumptionCtx = document.getElementById('consumptionPatternChart').getContext('2d');
+            new Chart(consumptionCtx, {
+                type: 'line',
+                data: {
+                    labels: ['月', '火', '水', '木', '金', '土', '日'],
+                    datasets: [{
+                        label: '消費アイテム数',
+                        data: [5, 7, 4, 8, 6, 10, 9], // Simulated data for demonstration
+                        fill: true,
+                        backgroundColor: 'rgba(0, 212, 255, 0.2)',
+                        borderColor: colors.blue,
+                        tension: 0.3,
+                        pointBackgroundColor: colors.blue,
+                        pointRadius: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: { color: colors.grid }
+                        },
+                        x: {
+                            grid: { color: colors.grid }
+                        }
+                    }
+                }
+            });
+
+            // 4. Fridge System Status (Bar)
+            const systemStatusCtx = document.getElementById('systemStatusChart').getContext('2d');
+            new Chart(systemStatusCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['オンライン', 'オフライン'],
+                    datasets: [{
+                        label: 'ユニット数',
+                        data: [2, 1], // Data based on your fridges.json file
+                        backgroundColor: [colors.green, colors.orange],
+                        borderRadius: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    indexAxis: 'y',
+                    scales: {
+                        x: {
+                            grid: { color: colors.grid }
+                        },
+                        y: {
+                            grid: { display: false }
+                        }
+                    },
+                    plugins: {
+                        legend: { display: false }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+

@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="us">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Sign In</title>
+<title>FridgeFlow - Sign In</title>
 <style>
-/* Общие правила */
 *, ::after, ::before {
   box-sizing: border-box;
 }
@@ -21,17 +20,33 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  background-image: 
+    radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%);
 }
 
 h1 {
-  font-size: 23px;
+  font-size: 28px;
+  text-align: center;
+  background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(52,9,121,1) 37%, rgba(0,212,255,1) 94%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 2rem;
 }
 
-/* Форма */
+/* Form */
 .form {
-  width: 300px;
-  padding: 64px 15px 24px;
+  width: 350px;
+  padding: 64px 25px 24px;
   margin: 0 auto;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
 
 .form .control {
@@ -40,7 +55,7 @@ h1 {
 
 .form .control input {
   width: 100%;
-  padding: 14px 16px;
+  padding: 16px 18px;
   border: 0;
   background: transparent;
   color: #fff;
@@ -58,7 +73,7 @@ h1 {
 .form .btn {
   width: 100%;
   display: block;
-  padding: 14px 16px;
+  padding: 16px 18px;
   background: transparent;
   outline: none;
   border: 0;
@@ -68,9 +83,84 @@ h1 {
   font-family: monospace;
   font-size: 16px;
   cursor: pointer;
+  text-transform: uppercase;
 }
 
-/* Цвета и градиенты */
+/* Loading spinner */
+.loading-spinner {
+  display: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: #00d4ff;
+  animation: spin 1s ease-in-out infinite;
+  margin-right: 10px;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Remember me checkbox */
+.remember-me {
+  display: flex;
+  align-items: center;
+  margin: 20px 0;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 14px;
+}
+
+.remember-me input[type="checkbox"] {
+  margin-right: 8px;
+  transform: scale(1.2);
+}
+
+/* Forgot password link */
+.forgot-password {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.forgot-password a {
+  color: #00d4ff;
+  text-decoration: none;
+  font-size: 14px;
+  transition: color 0.3s ease;
+}
+
+.forgot-password a:hover {
+  color: #00ffff;
+  text-shadow: 0 0 5px currentColor;
+}
+
+/* Error message */
+.error-message {
+  background: rgba(255, 7, 58, 0.1);
+  border: 1px solid #ff073a;
+  color: #ff073a;
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  font-size: 14px;
+  text-align: center;
+  display: none;
+}
+
+/* Success message */
+.success-message {
+  background: rgba(57, 255, 20, 0.1);
+  border: 1px solid #39ff14;
+  color: #39ff14;
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  font-size: 14px;
+  text-align: center;
+  display: none;
+}
+
+/* Colours and Gradients */
 .block-cube {
   position: relative;
 }
@@ -115,7 +205,7 @@ h1 {
 }
 
 .block-cube .bg .bg-inner {
-  transition: all 0.2s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 
 .block-cube .bg-inner {
@@ -132,7 +222,7 @@ h1 {
   z-index: 2;
 }
 
-/* block-input состояние */
+/* block-input state */
 .block-cube.block-input input {
   position: relative;
   z-index: 2;
@@ -142,24 +232,24 @@ h1 {
 .block-cube.block-input input:focus ~ .bg-top .bg-inner,
 .block-cube.block-input input:focus ~ .bg .bg-inner {
   top: 100%;
-  background: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.1);
 }
 
 .block-cube.block-input .bg-top,
 .block-cube.block-input .bg-right,
 .block-cube.block-input .bg {
-  background: rgba(255, 255, 255, 0.5);
-  transition: background 0.2s ease-in-out;
+  background: rgba(255, 255, 255, 0.2);
+  transition: background 0.3s ease-in-out;
 }
 
 .block-cube.block-input .bg-right,
 .block-cube.block-input .bg-top .bg-inner {
-  transition: all 0.2s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 
 .block-cube.block-input:focus,
 .block-cube.block-input:hover {
-  background: rgba(255, 255, 255, 0.8);
+  background: rgba(0, 0, 0, 0.8);
 }
 
 .block-cube.block-cube-hover:focus,
@@ -167,44 +257,61 @@ h1 {
   top: 100%;
 }
 
-/* Кредиты */
-.credits {
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  padding: 15px 15px;
-  width: 100%;
-  z-index: 111;
-}
-
-.credits a {
-  opacity: 0.6;
-  color: #fff;
-  font-size: 11px;
-  text-decoration: none;
-}
-
-.credits a:hover {
-  opacity: 1;
-}
-
-/* Additional styling for better functionality */
-.form .control input::placeholder {
-  color: rgba(255, 255, 255, 0.7);
-}
-
 .block-cube.block-cube-hover:hover {
   cursor: pointer;
+  transform: translateY(-2px);
+}
+
+.form .control input::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* Login attempts counter */
+.login-attempts {
+  text-align: center;
+  margin-top: 15px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* Animation for form entrance */
+.form {
+  animation: slideIn 0.8s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Disabled state */
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btn:disabled:hover {
+  transform: none;
 }
 </style>
 </head>
 <body>
-<form class="form" autocomplete="off">
+<form class="form" autocomplete="off" id="loginForm">
   <div class="control">
-    <h1>Sign In</h1>
+    <h1>❄️ FridgeFlow Login</h1>
   </div>
+  
+  <div class="error-message" id="errorMessage"></div>
+  <div class="success-message" id="successMessage"></div>
+  
   <div class="control block-cube block-input">
-    <input name="username" type="text" placeholder="Username" />
+    <input name="username" type="text" placeholder="Username" required id="usernameInput" />
     <div class="bg-top">
       <div class="bg-inner"></div>
     </div>
@@ -215,8 +322,9 @@ h1 {
       <div class="bg-inner"></div>
     </div>
   </div>
+  
   <div class="control block-cube block-input">
-    <input name="password" type="password" placeholder="Password" />
+    <input name="password" type="password" placeholder="Password" required id="passwordInput" />
     <div class="bg-top">
       <div class="bg-inner"></div>
     </div>
@@ -227,7 +335,13 @@ h1 {
       <div class="bg-inner"></div>
     </div>
   </div>
-  <button type="button" class="btn block-cube block-cube-hover">
+  
+  <div class="remember-me">
+    <input type="checkbox" id="rememberMe" name="rememberMe">
+    <label for="rememberMe">Remember me</label>
+  </div>
+  
+  <button type="submit" class="btn block-cube block-cube-hover" id="loginBtn">
     <div class="bg-top">
       <div class="bg-inner"></div>
     </div>
@@ -237,54 +351,278 @@ h1 {
     <div class="bg">
       <div class="bg-inner"></div>
     </div>
-    <div class="text">Log In</div>
+    <div class="text">
+      <div class="loading-spinner" id="loadingSpinner"></div>
+      <span id="btnText">Access System</span>
+    </div>
   </button>
+  
+  <div class="forgot-password">
+    <a href="#" onclick="showForgotPassword()">Forgot your password?</a>
+  </div>
+  
+  <div class="login-attempts" id="loginAttempts"></div>
 </form>
 
 <script>
-// Add some basic functionality to the form
-document.querySelector('.form').addEventListener('submit', function(e) {
-  e.preventDefault();
-  
-  const username = document.querySelector('input[name="username"]').value;
-  const password = document.querySelector('input[name="password"]').value;
-  
-  if (username && password) {
-    alert('Login attempt with username: ' + username);
-  } else {
-    alert('Please fill in both username and password');
-  }
-});
-// Допустимые пользователи (имитация файла)
+// Enhanced user database with different access levels
 const users = [
-  { username: 'user1', password: 'pass1' },
-  { username: '1', password: '1' },
+  { username: 'admin', password: 'admin123', role: 'administrator', name: 'System Administrator' },
+  { username: 'user1', password: 'pass1', role: 'user', name: 'John Doe' },
+  { username: '1', password: '1', role: 'user', name: 'Test User' },
+  { username: 'manager', password: 'manager123', role: 'manager', name: 'Facility Manager' },
+  { username: 'guest', password: 'guest123', role: 'guest', name: 'Guest User' }
 ];
 
-document.querySelector('.form').addEventListener('submit', function(e) {
+let loginAttempts = 0;
+const maxAttempts = 5;
+let isLocked = false;
+let lockTimeout;
+
+// Load saved login attempts from memory
+function loadLoginAttempts() {
+  const saved = sessionStorage.getItem('loginAttempts');
+  if (saved) {
+    loginAttempts = parseInt(saved);
+    updateAttemptsDisplay();
+  }
+}
+
+function saveLoginAttempts() {
+  sessionStorage.setItem('loginAttempts', loginAttempts.toString());
+}
+
+function updateAttemptsDisplay() {
+  const attemptsEl = document.getElementById('loginAttempts');
+  if (loginAttempts > 0) {
+    const remaining = maxAttempts - loginAttempts;
+    attemptsEl.textContent = `Login attempts: ${loginAttempts}/${maxAttempts} (${remaining} remaining)`;
+    
+    if (remaining <= 2) {
+      attemptsEl.style.color = '#ff073a';
+    } else if (remaining <= 3) {
+      attemptsEl.style.color = '#ffff00';
+    }
+  }
+}
+
+function showError(message) {
+  const errorEl = document.getElementById('errorMessage');
+  const successEl = document.getElementById('successMessage');
+  
+  successEl.style.display = 'none';
+  errorEl.textContent = message;
+  errorEl.style.display = 'block';
+  
+  // Auto-hide after 5 seconds
+  setTimeout(() => {
+    errorEl.style.display = 'none';
+  }, 5000);
+}
+
+function showSuccess(message) {
+  const errorEl = document.getElementById('errorMessage');
+  const successEl = document.getElementById('successMessage');
+  
+  errorEl.style.display = 'none';
+  successEl.textContent = message;
+  successEl.style.display = 'block';
+}
+
+function lockAccount() {
+  isLocked = true;
+  const loginBtn = document.getElementById('loginBtn');
+  const usernameInput = document.getElementById('usernameInput');
+  const passwordInput = document.getElementById('passwordInput');
+  
+  loginBtn.disabled = true;
+  usernameInput.disabled = true;
+  passwordInput.disabled = true;
+  
+  showError('Account locked due to too many failed attempts. Please wait 30 seconds.');
+  
+  // Unlock after 30 seconds
+  lockTimeout = setTimeout(() => {
+    isLocked = false;
+    loginAttempts = 0;
+    saveLoginAttempts();
+    
+    loginBtn.disabled = false;
+    usernameInput.disabled = false;
+    passwordInput.disabled = false;
+    
+    document.getElementById('loginAttempts').textContent = '';
+    document.getElementById('errorMessage').style.display = 'none';
+    showSuccess('Account unlocked. You may try again.');
+  }, 30000);
+}
+
+function setLoading(loading) {
+  const spinner = document.getElementById('loadingSpinner');
+  const btnText = document.getElementById('btnText');
+  const loginBtn = document.getElementById('loginBtn');
+  
+  if (loading) {
+    spinner.style.display = 'inline-block';
+    btnText.textContent = 'Authenticating...';
+    loginBtn.disabled = true;
+  } else {
+    spinner.style.display = 'none';
+    btnText.textContent = 'Access System';
+    loginBtn.disabled = false;
+  }
+}
+
+function authenticateUser(username, password) {
+  return new Promise((resolve) => {
+    // Simulate authentication delay
+    setTimeout(() => {
+      const user = users.find(u => u.username === username && u.password === password);
+      resolve(user);
+    }, 1500);
+  });
+}
+
+function saveUserSession(user, rememberMe) {
+  const sessionData = {
+    username: user.username,
+    role: user.role,
+    name: user.name,
+    loginTime: new Date().toISOString(),
+    sessionId: 'session_' + Date.now()
+  };
+  
+  if (rememberMe) {
+    localStorage.setItem('fridgeFlowUser', JSON.stringify(sessionData));
+    localStorage.setItem('fridgeFlowRemember', 'true');
+  } else {
+    sessionStorage.setItem('fridgeFlowUser', JSON.stringify(sessionData));
+  }
+}
+
+function checkSavedSession() {
+  const remember = localStorage.getItem('fridgeFlowRemember');
+  if (remember === 'true') {
+    const savedUser = localStorage.getItem('fridgeFlowUser');
+    if (savedUser) {
+      const userData = JSON.parse(savedUser);
+      const loginTime = new Date(userData.loginTime);
+      const now = new Date();
+      const hoursDiff = (now - loginTime) / (1000 * 60 * 60);
+      
+      // Auto-login if session is less than 24 hours old
+      if (hoursDiff < 24) {
+        document.getElementById('usernameInput').value = userData.username;
+        document.getElementById('rememberMe').checked = true;
+        showSuccess(`Welcome back, ${userData.name}! Auto-filling your credentials.`);
+      }
+    }
+  }
+}
+
+function showForgotPassword() {
+  alert('Password recovery feature not implemented in demo.\n\nDefault credentials:\n• admin/admin123 (Administrator)\n• user1/pass1 (User)\n• 1/1 (Quick test)\n• manager/manager123 (Manager)\n• guest/guest123 (Guest)');
+}
+
+// Form submission handler
+document.getElementById('loginForm').addEventListener('submit', async function(e) {
   e.preventDefault();
   
-  const username = document.querySelector('input[name="username"]').value.trim();
-  const password = document.querySelector('input[name="password"]').value.trim();
-  
-  if (!username || !password) {
-    alert('Please fill in both username and password');
+  if (isLocked) {
+    showError('Account is locked. Please wait.');
     return;
   }
   
-  // Проверяем наличие пользователя с таким логином и паролем
-  const validUser = users.find(user => user.username === username && user.password === password);
+  const username = document.getElementById('usernameInput').value.trim();
+  const password = document.getElementById('passwordInput').value.trim();
+  const rememberMe = document.getElementById('rememberMe').checked;
   
-  if (validUser) {
-    // Перенаправляем на home.html
-    window.location.href = 'home.html';
-  } else {
-    alert('Invalid username or password');
+  if (!username || !password) {
+    showError('Please fill in both username and password');
+    return;
+  }
+  
+  setLoading(true);
+  
+  try {
+    const user = await authenticateUser(username, password);
+    
+    if (user) {
+      loginAttempts = 0;
+      saveLoginAttempts();
+      
+      saveUserSession(user, rememberMe);
+      showSuccess(`Welcome, ${user.name}! Redirecting to dashboard...`);
+      
+      // Redirect after 2 seconds
+      setTimeout(() => {
+        window.location.href = 'home.html';
+      }, 2000);
+      
+    } else {
+      loginAttempts++;
+      saveLoginAttempts();
+      updateAttemptsDisplay();
+      
+      if (loginAttempts >= maxAttempts) {
+        lockAccount();
+      } else {
+        const remaining = maxAttempts - loginAttempts;
+        showError(`Invalid credentials. ${remaining} attempts remaining.`);
+      }
+    }
+  } catch (error) {
+    showError('Authentication service error. Please try again.');
+  } finally {
+    setLoading(false);
   }
 });
 
-document.querySelector('.btn').addEventListener('click', function() {
-  document.querySelector('.form').dispatchEvent(new Event('submit'));
+// Enter key support
+document.addEventListener('keypress', function(e) {
+  if (e.key === 'Enter' && !isLocked) {
+    document.getElementById('loginForm').dispatchEvent(new Event('submit'));
+  }
+});
+
+// Input validation
+document.getElementById('usernameInput').addEventListener('input', function(e) {
+  // Remove special characters except underscore and dash
+  e.target.value = e.target.value.replace(/[^a-zA-Z0-9_-]/g, '');
+});
+
+// Password visibility toggle (double-click)
+document.getElementById('passwordInput').addEventListener('dblclick', function(e) {
+  const input = e.target;
+  if (input.type === 'password') {
+    input.type = 'text';
+    setTimeout(() => {
+      input.type = 'password';
+    }, 1000);
+  }
+});
+
+// Initialize
+document.addEventListener('DOMContentLoaded', function() {
+  loadLoginAttempts();
+  checkSavedSession();
+  
+  // Focus on username input
+  document.getElementById('usernameInput').focus();
+  
+  // Show demo credentials hint after 10 seconds
+  setTimeout(() => {
+    if (document.getElementById('usernameInput').value === '') {
+      showSuccess('Demo tip: Try "admin/admin123" or "1/1" for quick access');
+    }
+  }, 10000);
+});
+
+// Cleanup on page unload
+window.addEventListener('beforeunload', function() {
+  if (lockTimeout) {
+    clearTimeout(lockTimeout);
+  }
 });
 </script>
 </body>

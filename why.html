@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>企画説明 - FridgeFlow</title>
+    <style>
+        :root {
+            --text-color: #333;
+            --bg-color: #ffffff;
+            --primary-color: #0056b3;
+            --light-gray: #f4f4f4;
+            --border-color: #e0e0e0;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+            line-height: 1.7;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 1rem 2rem;
+            background: var(--bg-color);
+        }
+        header {
+            text-align: center;
+            border-bottom: 2px solid var(--light-gray);
+            padding-bottom: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        h1 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        .subtitle {
+            font-size: 1rem;
+            color: #666;
+            margin: 0;
+        }
+        h2 {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 0.5rem;
+            margin-top: 3rem;
+            font-weight: 500;
+        }
+        p, ul {
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+        ul {
+            padding-left: 20px;
+            list-style-type: disc;
+        }
+        li {
+            margin-bottom: 0.5rem;
+        }
+        strong {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+        code {
+            background-color: var(--light-gray);
+            padding: 0.2em 0.4em;
+            border-radius: 4px;
+            font-family: 'SF Mono', 'Monaco', monospace;
+            font-size: 0.9em;
+        }
+        footer {
+            text-align: center;
+            margin-top: 4rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border-color);
+            font-size: 0.9rem;
+            color: #777;
+        }
+        .section {
+            margin-bottom: 2.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>FridgeFlow: ICTを活用した家庭内食品ロス削減への挑戦</h1>
+            <p class="subtitle">彩の国さいたま ICTコンテスト2025 アイデア部門 応募作品</p>
+        </header>
+
+        <main>
+            <section id="problem" class="section">
+                <h2>1. 私たちが解決を目指す「身近な課題」</h2>
+                <p>
+                    現代の家庭が直面する大きな課題の一つに、<strong>食品ロス（フードロス）</strong>があります。食材を買いすぎたり、冷蔵庫の奥にあるものを忘れてしまい、気づいた時には賞味期限が切れている、といった経験は誰にでもあるのではないでしょうか。
+                </p>
+                <p>
+                    この問題は、経済的な損失だけでなく、環境にも大きな負荷をかけています。私たちは、この身近でありながら深刻な課題をICTの力で解決できると考えました。
+                </p>
+                <ul>
+                    <li>冷蔵庫の中身を正確に把握できない。</li>
+                    <li>賞味期限の管理が難しい。</li>
+                    <li>計画的でない買い物による無駄な出費。</li>
+                </ul>
+            </section>
+
+            <section id="solution" class="section">
+                <h2>2. 提案する解決策「FridgeFlow」</h2>
+                <p>
+                    <code>FridgeFlow</code>は、家庭の冷蔵庫をスマート化し、食品管理を自動化・効率化するためのWebアプリケーションです。利用者は、手持ちのデバイスからいつでもどこでも冷蔵庫の中身を確認し、食品ロスを未然に防ぐための情報を得ることができます。
+                </p>
+            </section>
+
+            <section id="features" class="section">
+                <h2>3. 主な機能とそれによる解決</h2>
+                <ul>
+                    <li><strong>ダッシュボード:</strong> 在庫数やアラート件数など、冷蔵庫の状態をひと目で把握できます。これにより、管理意識の向上を促します。</li>
+                    <li><strong>在庫管理:</strong> 各食材の品名、数量、賞味期限をデジタルで一元管理。「冷蔵庫に何があったか」を明確にし、二重買いを防ぎます。</li>
+                    <li><strong>アラート機能:</strong> 賞味期限が近づいた食材や、冷蔵庫の異常（オフラインなど）を通知。食品を無駄にする前に対処できます。</li>
+                    <li><strong>アナリティクス:</strong> 食品の消費パターンや廃棄状況をグラフで可視化。データに基づいた、より賢い買い物計画の立案を支援します。</li>
+                </ul>
+            </section>
+            
+            <section id="technology" class="section">
+                <h2>4. 使用技術</h2>
+                <p>
+                    本アプリケーションのプロトタイプは、Web標準技術である<code>HTML5</code>, <code>CSS3</code>, <code>JavaScript</code>を用いて開発されています。特別なソフトウェアをインストールすることなく、どのモダンブラウザからでもアクセス可能です。
+                </p>
+            </section>
+
+            <section id="vision" class="section">
+                <h2>5. 今後の展望</h2>
+                <p>
+                    将来的には、AIを活用した機能拡張を計画しています。
+                </p>
+                <ul>
+                    <li><strong>レシピ提案機能:</strong> 在庫食材（特に賞味期限の近いもの）から作れるレシピを自動で提案し、消費を促進します。</li>
+                    <li><strong>予測型ショッピングリスト:</strong> ユーザーの消費パターンを学習し、次に必要になる食材を予測してリストを自動生成します。</li>
+                    <li><strong>カメラによる食材認識:</strong> スマートフォンのカメラで食材を撮影するだけで、品目や賞味期限を自動で読み取り、在庫に登録します。</li>
+                </ul>
+                <p>
+                    <code>FridgeFlow</code>を通じて、各家庭がよりスマートで持続可能な食生活を送れるよう、今後も開発を続けてまいります。
+                </p>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2025 FridgeFlow Development Team</p>
+        </footer>
+    </div>
+</body>
+</html>
